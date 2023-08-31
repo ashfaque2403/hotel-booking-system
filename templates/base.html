@@ -1,0 +1,165 @@
+{% load static %}
+<!doctype html>
+<html class="no-js" lang="zxx">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>DelLuna</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- <link rel="manifest" href="site.webmanifest"> -->
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'img/favicon.png' %}">
+    <!-- Place favicon.ico in the root directory -->
+
+    <!-- CSS here -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstraps.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}">
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/themify-icons.css' %}">
+    <link rel="stylesheet" href="{% static 'css/nice-select.css' %}">
+    <link rel="stylesheet" href="{% static 'css/flaticon.css' %}">
+    <link rel="stylesheet" href="{% static 'css/gijgo.css' %}">
+    <link rel="stylesheet" href="{% static 'css/animate.css' %}">
+    <link rel="stylesheet" href="{% static 'css/slicknav.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'css/ffh.css' %}">
+    <link rel="stylesheet" href="{% static 'css/ffh.css' %}">
+    <link rel="stylesheet" href="{% static 'css/yes.css' %}">
+
+    <!-- <link rel="stylesheet" href="css/responsive.css' %}"> -->
+</head>
+
+<body>
+    <!--[if lte IE 9]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+        <![endif]-->
+
+    <!-- header-start -->
+    <header>
+        <div class="header-area bg-success">
+            <div id="sticky-header clt" class="main-header-area bg-success ">
+                <div class="container-fluid ">
+                    <div class="row align-items-center no-gutters">
+                        <div class="col-xl-3 col-lg-4  mb-4">
+                            <div class="main-menu  d-none d-lg-block">
+                                <nav>
+                                    <ul id="navigation">
+                                        <li><a class="active" href="{% url 'index' %}" style="font: 600 15px/1.3 'Oleo Script', Helvetica, sans-serif;">home</a></li>
+                                        {% if request.user.is_staff %}
+                                        <li><a href="{% url 'admin' %}" style="font: 600 15px/1.3 'Oleo Script', Helvetica, sans-serif; color:">Dashboard</a></li>
+                                        <li><a href="{% url 'admins' %}" style="font: 600 15px/1.3 'Oleo Script', Helvetica, sans-serif; color:">Admin</a></li>
+                                       {% else %}
+
+                                       
+                                       <li><a href="{% url 'about' %}" style="font: 600 15px/1.3 'Oleo Script', Helvetica, sans-serif; color:">About</a></li>
+                                       <li><a href="{% url 'profile' %}" style="font: 600 15px/1.3 'Oleo Script', Helvetica, sans-serif; color:">Bookings</a></li>
+                                     
+                                        {% endif %}
+
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-6  mb-4">
+                            <div class="logo-img">
+                                {% comment %} <a href="index.html">
+                                    <img src="{% static 'img/logo.png' %}" alt="">
+                                </a> {% endcomment %}
+                                <h2 style="font: 600 50px/1.3 		Brush Script MT,Lucida Handwriting,cursive; color:#fff;">Del Luna</h2>
+                            </div>
+                        </div>
+                        <div class="col-xl-2 col-lg-2 d-none d-lg-block mb-4">
+                            <div class="book_room">
+                                {% if request.user.is_authenticated %}
+                                <strong class="text-light p-2">Welcome {{user.username}}</strong>
+                                <div class="btn btn-light   d-none d-lg-block">
+                                    <a class="text-success" href="{% url 'logout' %}">Logout</a>
+                                </div>
+                                {% else %}
+                                <div class="btn btn-light d-none d-lg-block px-3">
+                                    <a class="text-success" href="{% url 'login' %}">Login</a>
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="mobile_menu d-block d-lg-none"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- header-end -->
+
+{% block content %}
+
+{% endblock  %}
+    <!-- footer -->
+   
+
+    <!-- link that opens popup -->
+
+     {% comment %} <!-- form itself end-->
+        <form id="test-form" class="white-popup-block mfp-hide">
+                <div class="popup_box ">
+                        <div class="popup_inner">
+                            <h3>Check Availability</h3>
+                            <form action="#">
+                                <div class="row">
+                                    <div class="col-xl-6">
+                                        <input id="datepicker" placeholder="Check in date">
+                                    </div>
+                                    <div class="col-xl-6">
+                                        <input id="datepicker2" placeholder="Check out date">
+                                    </div>
+                                    <div class="col-xl-12">
+                                        <button type="submit" class="boxed-btn3">Check Availability</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+            </form>
+    <!-- form itself end -->  {% endcomment %}
+
+    <!-- JS here -->
+    <script src="{% static 'js/vendor/modernizr-3.5.0.min.js' %}"></script>
+    <script src="{% static 'js/vendor/jquery-1.12.4.min.js' %}"></script>
+    <script src="{% static 'js/popper.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'js/isotope.pkgd.min.js' %}"></script>
+    <script src="{% static 'js/ajax-form.js' %}"></script>
+    <script src="{% static 'js/waypoints.min.js' %}"></script>
+    <script src="{% static 'js/jquery.counterup.min.js' %}"></script>
+    <script src="{% static 'js/imagesloaded.pkgd.min.js' %}"></script>
+    <script src="{% static 'js/scrollIt.js' %}"></script>
+    <script src="{% static 'js/jquery.scrollUp.min.js' %}"></script>
+    <script src="{% static 'js/wow.min.js' %}"></script>
+    <script src="{% static 'js/nice-select.min.js' %}"></script>
+    <script src="{% static 'js/jquery.slicknav.min.js' %}"></script>
+    <script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
+    <script src="{% static 'js/plugins.js' %}"></script>
+    <script src="{% static 'js/gijgo.min.js' %}"></script>
+
+    <!--contact js-->
+    <script src="{% static 'js/contact.js' %}"></script>
+    <script src="{% static 'js/jquery.ajaxchimp.min.js' %}"></script>
+    <script src="{% static 'js/jquery.form.js' %}"></script>
+    <script src="{% static 'js/jquery.validate.min.js' %}"></script>
+    <script src="{% static 'js/mail-script.js' %}"></script>
+
+    <script src="{% static 'js/main.js' %}"></script>
+    
+
+
+
+</body>
+
+</html>

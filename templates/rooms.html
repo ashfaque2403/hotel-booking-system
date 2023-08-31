@@ -1,0 +1,113 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+    <!-- offers_area_start -->
+    <div class="offers_area padding_top">
+        <div class="container">
+            {% include "messages.html" %}
+            <div class="row bg-dark  rounded  mb-5 " >
+                <div>
+                </div>
+                {% comment %} {% for hotels_objs in hotels_objs %} {% endcomment %}
+                <div class="col-lg-8 col-md-8 p-4  ">
+                    <div class="single_offers w-100">
+                        <div class="about_thumb pt-2 px-2">
+                            <img src="/media/{{hotels_objs.hotel_images.first.images}}"alt="" class="w-50 rounded">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 p-4 text-light">
+                        <h3 class="text-light">{{hotels_objs.hotel_name}}</h3>
+                                
+                        <span><strong>Price:&#x20B9;{{hotels_objs.hotel_price}}/
+                            {% for perday in hotels_objs.per.all %}
+                            {{perday.per_day}}
+                            {% endfor %}
+                        </strong></span><br>
+                        <span>Description{{hotels_objs.description}}</span>
+                                <p>
+                                    {% for amenitie in hotels_objs.amenities.all %}
+                                    <b class="text-success">{{amenitie.amenity_name}},</b>
+                                    {% endfor %}
+                                </p>
+                                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModalCenter">
+                                    Book now
+                                  </button>
+                                  
+
+                                 
+                                  
+                    </div>
+                    <div class="row">
+                        {% for image in hotels_objs.hotel_images.all  %}
+                        <div class="col-md-3">
+                            <div class="single_offers w-100">
+                                <div class="mb-5 px-5">
+                                    <div class="about_thumb pt-2 px-2" style="width:500px; heigth:500px;">
+                                        <img src="/media/{{image.images}}"alt="" class="w-50 rounded"  height="170px">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+
+                    {% comment %} {% endfor %} {% endcomment %}
+                </div>
+                
+            </div>
+        </div>
+     
+
+        
+    </div>
+    <div class="container">
+  <!-- Modal -->
+            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Check Availability</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>
+                    <div class="modal-body">
+                        <form method="post">
+                            {% csrf_token %}
+                        
+                            <div class="row">
+                                <div class="col-xl-6">
+                                    <input   placeholder="Name" type="text" class="form-control" name="checkin" required value="{{user.username}}"> 
+                                </div>
+                                <div class="col-xl-6">
+                                    <input   placeholder="Phone" type="tel" pattern="^\d{1,10}$" minlength="10" class="form-control" name="phone" required> 
+                                </div>
+                                <div class="col-xl-6 mt-4">
+                                    <input   placeholder="Check in date" type="date" class="form-control" name="checkin" required> 
+                                </div>
+                                <div class="col-xl-6 mt-4">
+                                    <input  placeholder="Check out date" type="date" class="form-control" name="checkout" required>
+                                </div>
+                                <div class="col-xl-6 mt-4">
+                                    <input  placeholder="Enter your address... " type="text" class="form-control" name="address" required>
+                                </div>
+                                <div class="col-xl-12">
+                                    <button type="submit" class="btn btn-success mb-2 mt-5">Book</button>
+                                    
+                                    
+                                </div>
+                            </div>
+                        </form> 
+                    </div>
+                    <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+                </div>
+            </div>
+        <!-- form itself end -->
+    </div>
+
+   {% endblock %}
